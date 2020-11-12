@@ -9,13 +9,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
-
-        .cajatexto{
+        .cajatexto {
 
             max-height: 25px;
 
         }
-
     </style>
 
 </head>
@@ -30,7 +28,7 @@
         <br>
         <div class="row">
             <div class="col-4">
-                <div id="btn1"></div> 
+                <div id="btn1"></div>
             </div>
             <div class="col-4">
                 <div id="btn2"></div>
@@ -40,6 +38,10 @@
                 <!-- <button id="btn3" class="btn btn-block btn-secondary">tiempo3</button> -->
             </div>
         </div>
+        <br>
+        <div class="row">
+            <button class="btn btn-block btn-dark" id="botonresultado" onclick="comprueba()">CHECK</button>
+        </div>
     </div>
 
 
@@ -47,47 +49,71 @@
 
     <script>
 
+        var tiempoAAdivinar = 0;
+        var verboElegido = 0;
+
+        function comprueba() {
+
+            //Leemos el contenido de la caja que es lo que ha escrito el usuario
+            var verboLeido = document.getElementById("caja").value;
+
+            document.getElementById("botonresultado").classList.remove('btn-dark');  //Con js puedo eliminar una clase con este método
+            //Boton en verde si el texto escrito es el correcto
+            if (verbos[verboElegido][tiempoAAdivinar] == verboLeido){
+
+                document.getElementById("botonresultado").classList.add('btn-success');
+
+            }else{ //Falla, botón en rojo
+
+                document.getElementById("botonresultado").classList.add('btn-danger');
+                document.getElementById("botonresultado").innerText = verbos[verboElegido][tiempoAAdivinar];
+            }
+
+        }
+
         function eligeVerbo() {
 
-            var verboElegido = Math.floor(Math.random() * verbos.length);
-            var tiempoAAdivinar = Math.floor(Math.random() * 3) //Variable para que aparezca un valor random para eliminar un botón 
+            verboElegido = Math.floor(Math.random() * verbos.length);
+            tiempoAAdivinar = Math.floor(Math.random() * 3); //Variable para que aparezca un valor random para eliminar un botón 
 
             document.getElementById("castellano").innerHTML = verbos[verboElegido][3];
 
             // Elimino el contenido de un botón
 
-            if (tiempoAAdivinar == 0){ 
-               
+            if (tiempoAAdivinar == 0) {
+
                 document.getElementById("btn1").innerHTML = '<input id="caja" class="form-control">';
 
-            }else{
+            } else {
 
-                document.getElementById("btn1").innerHTML = 
-                '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][0] + '</button>';
+                document.getElementById("btn1").innerHTML =
+                    '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][0] + '</button>';
             }
 
-            if (tiempoAAdivinar == 1){
-               
-               document.getElementById("btn2").innerHTML = '<input id="caja" class="form-control">';
+            if (tiempoAAdivinar == 1) {
 
-           }else{
+                document.getElementById("btn2").innerHTML = '<input id="caja" class="form-control">';
 
-               document.getElementById("btn2").innerHTML = 
-               '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][1] + '</button>';
-           }
+            } else {
 
-           if (tiempoAAdivinar == 2){
-               
-               document.getElementById("btn3").innerHTML = '<input id="caja" class="form-control">';
+                document.getElementById("btn2").innerHTML =
+                    '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][1] + '</button>';
+            }
 
-           }else{
+            if (tiempoAAdivinar == 2) {
 
-               document.getElementById("btn3").innerHTML =
-               '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][3] + '</button>';
-               
-           }
-            
+                document.getElementById("btn3").innerHTML = '<input id="caja" class="form-control">';
+
+            } else {
+
+                document.getElementById("btn3").innerHTML =
+                    '<button class="btn btn-block btn-secondary">' + verbos[verboElegido][2] + '</button>';
+
+            }
+
         }
+
+
 
         eligeVerbo();
 
