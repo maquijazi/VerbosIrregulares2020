@@ -1,6 +1,6 @@
 var verbos = [
-["arise","arose","arisen","surgir"],
-["awake","awoke","awoken","despertar(se)"],
+["arise","arose","arisen","Surgir"],
+["awake","awoke","awoken","Despertar(se)"],
 ["bear","bore","borne","soportar"],
 ["beat","beat","beaten","golpear"],
 ["become","became","become","convertirse en"],
